@@ -1,0 +1,36 @@
+/*
+  Control 4 AC Bulbs and 1 AC Fan Using 5 Relays
+  
+*/
+
+const int relayPins[5] = {8, 9, 10, 11, 12};
+
+void setup() {
+  Serial.begin(9600);  // Start serial communication at 9600 baud
+
+  // Initialize each relay pin as an OUTPUT and set them to OFF initially.
+  for (int i = 0; i < 5; i++) {
+    pinMode(relayPins[i], OUTPUT);
+    // If using active HIGH relay modules (relay turns on when pin is HIGH):
+    digitalWrite(relayPins[i], HIGH);
+    // For active LOW modules, you might use digitalWrite(relayPins[i], HIGH);
+  }
+}
+
+void loop() {
+  // Wait until at least 5 bytes are available in the serial buffer.
+  if (Serial.available() >= 5) {
+    // Process each relay command.
+    for (int i = 0; i < 5; i++) {
+      int relayState = Serial.read();  // Read the next byte (expect 0 or 1)
+      
+      // For active HIGH relay modules: 
+      if (relayState == 1) {
+        digitalWrite(relayPins[i], LOW);  // Turn relay ON (bulb/fan ON)
+      } else {
+        digitalWrite(relayPins[i], HIGH);   // Turn relay OFF (bulb/fan OFF)
+      }
+      
+    }
+  }
+}
