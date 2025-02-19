@@ -1,0 +1,25 @@
+PySerial - Communication with Arduino & Hardware
+🔹 What is it?
+PySerial allows Python to communicate with microcontrollers (Arduino, ESP32) via USB/serial port.
+
+🔹 Uses:
+✅ Send & Receive Data to/from Arduino
+✅ Control Motors, LEDs, and Relays from Python
+✅ Read Sensor Values from Arduino into Python
+✅ Works with Raspberry Pi to control hardware
+
+🔹 Example Use Case:
+
+You used PySerial in your AC appliance control project to send hand gesture commands to Arduino! 🔥
+🔹 Example Code to Send Command to Arduino:
+
+import serial
+import time
+
+arduino = serial.Serial('COM5', 9600)  # Change 'COM5' to your Arduino port
+time.sleep(2)  # Wait for connection
+
+arduino.write(b'1')  # Send '1' to Arduino to turn on an LED
+print("Command Sent: LED ON")
+
+arduino.close()
