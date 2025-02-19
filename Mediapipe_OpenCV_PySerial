@@ -1,0 +1,10 @@
+Library	Main Use	Why is it Used?
+
+
+MediaPipe	AI-based Hand Tracking & Pose Estimation	Tracks hands, faces, and objects for real-time applications
+
+
+OpenCV	Image Processing & Computer Vision	Detects faces, objects, and colors; applies filters & transformations
+
+
+PySerial	Serial Communication with Arduino	Sends & receives data between Python and microcontrollers (Arduino, ESP32)
