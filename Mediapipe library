@@ -1,0 +1,13 @@
+MediaPipe (mp) - AI-Based Hand & Face Tracking
+🔹 What is it?
+MediaPipe is a Google AI library for real-time hand tracking, face detection, pose estimation, and object tracking.
+
+🔹 Uses:
+✅ Hand Tracking – Detects and tracks hand gestures without gloves
+✅ Face Recognition & Pose Detection – Identifies faces and human body movements
+✅ Object Detection – Tracks objects like pens, balls, or tools
+✅ Faster than OpenCV – Uses deep learning models optimized for real-time
+
+🔹 Example Use Case:
+
+You used MediaPipe Hand Tracking in our Computer Vision-based AC Appliance Control project!
