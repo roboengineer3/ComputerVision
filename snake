@@ -1,0 +1,85 @@
+import pygame
+import random
+
+pygame.init()
+
+# Screen
+width = 1000
+height = 800
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Snake Game")
+
+# Colors
+white = (255, 255, 255)
+green = (0, 255, 0)
+red = (255, 0, 0)
+black = (0, 0, 0)
+
+# Snake settings
+snake_size = 25
+snake_x = width // 2
+snake_y = height // 2
+speed_x = 0
+speed_y = 0
+
+snake_body = []
+snake_length = 1
+
+# Food
+food_x = random.randrange(0, width - snake_size, snake_size)
+food_y = random.randrange(0, height - snake_size, snake_size)
+
+clock = pygame.time.Clock()
+
+running = True
+while running:
+    screen.fill(white)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                speed_x = -snake_size
+                speed_y = 0
+            elif event.key == pygame.K_RIGHT:
+                speed_x = snake_size
+                speed_y = 0 
+            elif event.key == pygame.K_UP:
+                speed_y = -snake_size
+                speed_x = 0
+            elif event.key == pygame.K_DOWN:
+                speed_y = snake_size
+                speed_x = 0
+
+    snake_x += speed_x
+    snake_y += speed_y
+
+    if snake_x < 0 or snake_x >= width or snake_y < 0 or snake_y >= height:
+        running = False
+
+    snake_head = [snake_x, snake_y]
+    snake_body.append(snake_head)
+
+    if len(snake_body) > snake_length:
+        del snake_body[0]
+
+    for block in snake_body[:-1]:
+        if block == snake_head:
+            running = False
+
+    for block in snake_body:
+        pygame.draw.rect(screen, green, [block[0], block[1], snake_size, snake_size])
+
+    pygame.draw.rect(screen, red, [food_x, food_y, snake_size, snake_size])
+
+    if snake_x == food_x and snake_y == food_y:
+        food_x = random.randrange(0, width - snake_size, snake_size)
+        food_y = random.randrange(0, height - snake_size, snake_size)
+        snake_length += 1
+
+    pygame.display.update()
+    clock.tick(20)
+
+pygame.quit()
